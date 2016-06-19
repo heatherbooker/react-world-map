@@ -1,0 +1,75 @@
+//NOTE: to change the randomize button colour, you must directly edit the 
+//'fill' color of the 2 svg files in the assets folder!
+
+//variables
+$color-selected: #0DC2ED;
+$color-unselected: #699EAA;
+$color-btn: #3AD493;
+$color-btn-hover: #80E3BA;
+
+
+//map styles
+%map-selected {
+  fill: $color-selected;
+    &:hover {
+    cursor: pointer;
+  }
+}
+
+%map-unselected {
+  fill: $color-unselected;
+    &:hover {
+    cursor: pointer;
+  }
+}
+
+.map-selected-na, .map-selected-sa, .map-selected-af, .map-selected-eu, .map-selected-as, .map-selected-oc {
+  @extend %map-selected;
+}
+
+.map-unselected-na, .map-unselected-sa, .map-unselected-af, .map-unselected-eu, .map-unselected-as, .map-unselected-oc {
+  @extend %map-unselected;
+}
+
+
+//randomize button styles
+.map-random {
+  height: 40px;
+  display: inline;
+  margin: 0px 10px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+//button styles
+//use .map-btn to style the "continue" button
+.map-continue-btn {
+  display: inline-block;
+  margin-left: 300px;
+}
+
+%map-btn {
+  border-radius: 33px;
+  padding: 10px;
+  text-align: center;
+  font-size: 18px;
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.map-btn-disabled {
+  @extend %map-btn;
+  background-color: #868686;
+  pointer-events: none;
+}
+
+.map-btn-proceed {
+  @extend %map-btn;
+  background-color: $color-btn;
+  &:hover {
+    background-color: $color-btn-hover;
+  }
+}

@@ -11,6 +11,16 @@
   - enables 'continue' button
 - uses jsx & ES6 (and webpack & babel to compile)
 
+### to use:
+```
+git clone https://github.com/heatherbooker/clickable-svg-map.git
+cd clickable-svg-map
+npm install
+npm start
+xdg-open https://localhost:8080
+```
+above steps are for development - to simply build, instead of running the last two lines, simply run `npm build`
+
 #### Soon to be available on npm!
 
 Please feel free to fork and PR if you think you have developed something useful!
