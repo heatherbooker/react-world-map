@@ -15,11 +15,9 @@
 ```
 git clone https://github.com/heatherbooker/clickable-svg-map.git
 cd clickable-svg-map
-npm install
-npm start
-xdg-open https://localhost:8080
+npm build
 ```
-above steps are for development - to simply build, instead of running the last two lines, simply run `npm build`
+and open demo/index.html in your browser
 
 #### Soon to be available on npm!
 
