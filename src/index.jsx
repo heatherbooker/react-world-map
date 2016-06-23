@@ -1,5 +1,4 @@
 var React = require('react');
-var ReactDOM = require('react-dom');
 var WorldMap = require('./WorldMap.jsx');
 require("./styles.scss");
 import { Provider } from 'react-redux'
@@ -27,9 +26,14 @@ var mapClickLogic = function (state, area) {
 var store = createStore(mapClickReducer)
 
 
-ReactDOM.render(
-  <Provider store={store}>
-    <WorldMap />
-  </Provider>,
-  document.getElementById('react-app')
-);
+class ClickableMap extends React.Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <WorldMap />
+      </Provider>
+    );
+  }
+}
+
+module.exports = ClickableMap;
