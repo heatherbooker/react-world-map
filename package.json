@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "start": "webpack-dev-server --progress --inline",
+    "start": "webpack-dev-server --content-base demo/ --progress --inline",
     "test": "echo \"Error: no test specified\" && exit 1",
     "eslint": "eslint"
   },

@@ -21,10 +21,5 @@ module.exports = {
       test: /\.svg$/,
       loader: 'file'
     }]
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html'
-    })
-  ]
+  }
 };
