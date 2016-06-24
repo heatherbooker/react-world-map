@@ -5,6 +5,7 @@
   "main": "src/WorldMap.jsx",
   "scripts": {
     "build": "webpack",
+    "babel": "babel",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

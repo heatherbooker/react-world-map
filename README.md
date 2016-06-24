@@ -59,7 +59,6 @@ ReactDOM.render(
 <script type="text/javascript" src="../build/index.js"></script>
 ```
 
-
 If you are on npm, you can find source code (pre-compilation by webpack using babel, React, and ES6) on [github](https://github.com/heatherbooker/clickable-svg-map)
 
 Please feel free to fork and PR if you think you have developed something useful!
