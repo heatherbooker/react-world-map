@@ -1,17 +1,12 @@
 var React = require('react');
-var connect = require('react-redux').connect;
-
-
-const mapStateToProps = (state) => {
-  return {
-    clicked: state.clicked
-  }
-}
 
 
 class WorldMap extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      clicked: 'none'
+    }
     this.mapState = {
       na: "map-unselected",
       sa: "map-unselected",
@@ -21,17 +16,19 @@ class WorldMap extends React.Component {
       oc: "map-unselected"
     };
   }
-  actionCreator(area) {
-    return {
-      type: 'CLICKED_MAP',
-      area: area
-    }
-  }
   onMapClick(area) {
-    this.props.dispatch(this.actionCreator(area))
+    this.setState(
+      function() {
+        if (this.state.clicked === area) {
+          return {clicked: 'none'};
+        } else {
+          return {clicked: area};
+        }
+      }
+    );
   }
   changeCss() {
-    const clicked = this.props.clicked
+    const clicked = this.state.clicked
     let newMapState = {
       na: "map-unselected",
       sa: "map-unselected",
@@ -145,4 +142,4 @@ class WorldMap extends React.Component {
   }
 }
 
-module.exports = connect(mapStateToProps)(WorldMap);
+module.exports = WorldMap;

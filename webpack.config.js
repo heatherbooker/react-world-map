@@ -1,5 +1,5 @@
 module.exports = {
-  entry: "./demo/index.jsx",
+  entry: "./src/WorldMap.jsx",
   output: {
     path: 'build',
     filename: "index.js"
@@ -12,9 +12,6 @@ module.exports = {
       query: {
         presets: ['es2015', 'react']
       }
-    }, {
-      test: /\.scss$/,
-      loaders: ["style", "css", "sass"]
     }]
   }
 };
