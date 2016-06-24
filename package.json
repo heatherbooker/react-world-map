@@ -1,7 +1,7 @@
 {
   "name": "react-world-map",
   "version": "1.0.0",
-  "description": "clickable world map built in react (with redux) with css changes",
+  "description": "clickable world map built with React (and redux) with css changes",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
@@ -18,7 +18,7 @@
     "continents"
   ],
   "author": "Heather Booker",
-  "license": "ISC",
+  "license": "WTFPL",
   "bugs": {
     "url": "https://github.com/heatherbooker/clickable-svg-map/issues"
   },
