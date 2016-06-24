@@ -3,3 +3,4 @@ webpack.config.js
 .gitignore
 demo
 src
+build/bundle.js

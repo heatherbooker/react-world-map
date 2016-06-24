@@ -1,19 +1,19 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 //import react-world-map
-var ClickableMap = require('../src/WorldMap.jsx');
+var WorldMap = require('../src/WorldMap.jsx');
 
 
 var YourMainComponent = React.createClass({
   render: function() {
     return (
-      <ClickableMap />
+      <WorldMap />
     )
   }
 })
 
 
 ReactDOM.render(
-  <YourMainComponent />,
+  <WorldMap />,
   document.getElementById('react-app')
 )
