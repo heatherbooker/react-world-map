@@ -1,12 +1,11 @@
 var React = require('react');
 
 
-class WorldMap extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      clicked: 'none'
-    }
+var WorldMap = React.createClass ({
+  getInitialState: function() {
+    return {clicked: 'none'};
+  },
+  componentDidMount: function() {
     this.mapState = {
       na: "map-unselected",
       sa: "map-unselected",
@@ -15,8 +14,8 @@ class WorldMap extends React.Component {
       as: "map-unselected",
       oc: "map-unselected"
     };
-  }
-  onMapClick(area) {
+  },
+  onMapClick: function(area) {
     this.setState(
       function() {
         if (this.state.clicked === area) {
@@ -26,8 +25,8 @@ class WorldMap extends React.Component {
         }
       }
     );
-  }
-  changeCss() {
+  },
+  changeCss: function() {
     const clicked = this.state.clicked
     let newMapState = {
       na: "map-unselected",
@@ -43,8 +42,8 @@ class WorldMap extends React.Component {
       newMapState[clicked] = "map-selected";
     }
     this.mapState = newMapState;
-  }
-  render() {
+  },
+  render: function() {
     this.changeCss();
     return (
       <div className='row'>
@@ -140,6 +139,6 @@ class WorldMap extends React.Component {
       </div>
     );
   }
-}
+});
 
 module.exports = WorldMap;
