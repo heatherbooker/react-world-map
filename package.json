@@ -2,7 +2,7 @@
   "name": "react-world-map",
   "version": "1.0.4",
   "description": "clickable world map built with React with css changes",
-  "main": "index.js",
+  "main": "src/WorldMap.jsx",
   "scripts": {
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
