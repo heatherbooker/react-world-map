@@ -2,9 +2,10 @@
   "name": "react-world-map",
   "version": "1.0.10",
   "description": "clickable world map built with React with css changes",
-  "main": "build/index.js",
+  "main": "build/WorldMap.js",
   "scripts": {
     "build": "webpack",
+    "compile": "babel src -d build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -30,6 +31,7 @@
     "react": "^15.1.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.10.1",
     "babel-core": "^6.10.4",
     "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.9.0",

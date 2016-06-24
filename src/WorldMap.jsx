@@ -1,7 +1,7 @@
 var React = require('react');
 
 
-var WorldMap = React.createClass ({
+module.exports = React.createClass ({
   getInitialState: function() {
     return {clicked: 'none'};
   },
@@ -140,5 +140,3 @@ var WorldMap = React.createClass ({
     );
   }
 });
-
-module.exports = WorldMap;

@@ -1,5 +1,6 @@
 node_modules
+demo
+src
 webpack.config.js
 .gitignore
-demo
-build
+.babelrc
