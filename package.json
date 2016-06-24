@@ -1,6 +1,6 @@
 {
   "name": "react-world-map",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "clickable world map built with React (and redux) with css changes",
   "main": "index.js",
   "scripts": {
