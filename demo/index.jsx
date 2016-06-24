@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 //import react-world-map
-var WorldMap = require('../src/WorldMap.jsx');
+var WorldMap = require('../build/index.js');
 
 
 var YourMainComponent = React.createClass({

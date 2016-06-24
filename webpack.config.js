@@ -1,8 +1,8 @@
 module.exports = {
-  entry: "./src/WorldMap.jsx",
+  entry: "./demo/index.jsx",
   output: {
     path: 'build',
-    filename: "index.js"
+    filename: "bundle.js"
   },
   module: {
     loaders: [{

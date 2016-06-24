@@ -2,5 +2,4 @@ node_modules
 webpack.config.js
 .gitignore
 demo
-src
-build/bundle.js
+build
