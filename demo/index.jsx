@@ -12,6 +12,7 @@ var YourMainComponent = React.createClass({
   }
 })
 
+window.addEventListener('WorldMapClicked', function(e) {console.log('map was clicked, current selection is: ', e.detail.clickedState)});
 
 ReactDOM.render(
   <WorldMap />,

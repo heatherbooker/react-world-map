@@ -59,6 +59,10 @@
 	  }
 	});
 
+	window.addEventListener('WorldMapClicked', function (e) {
+	  console.log('map was clicked, current selection is: ', e.detail.clickedState);
+	});
+
 	ReactDOM.render(React.createElement(WorldMap, null), document.getElementById('react-app'));
 
 /***/ },
@@ -20365,7 +20369,7 @@
 	} else if (React) {
 	  //good to go
 	} else {
-	    console.warn('React not found - use a CDN');
+	    console.warn('React not found - use a CDN or run in terminal: npm ls --depth=0');
 	  }
 
 	var WorldMap = React.createClass({
@@ -20392,6 +20396,13 @@
 	        return { clicked: area };
 	      }
 	    });
+	  },
+	  componentDidUpdate: function componentDidUpdate() {
+	    this.emitEvent();
+	  },
+	  emitEvent: function emitEvent() {
+	    var clickedEvent = new CustomEvent('WorldMapClicked', { detail: { clickedState: this.state.clicked } });
+	    window.dispatchEvent(clickedEvent);
 	  },
 	  changeCss: function changeCss() {
 	    var clicked = this.state.clicked;

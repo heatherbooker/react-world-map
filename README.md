@@ -28,11 +28,20 @@ var YourMainComponent = React.createClass({
   }
 })
 
+window.addEventListener('WorldMapClicked', function(e) {console.log('map was clicked, current selection is: ', e.detail.clickedState)});
+
 ReactDOM.render(
   <YourMainComponent />,
   document.getElementById('react-app')
 )
 ```
+as you can see, there is an event fired when the map is clicked on, which contains the detail of which area is currently selected, codes of which are as follows:
+- NA - North America
+- SA - South America
+- AF - Africa
+- EU - Europe
+- AS - Asia
+- OC - Oceania
 ### make sure to set your css to target the map: 
 ```css
 .map-selected {

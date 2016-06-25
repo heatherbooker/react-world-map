@@ -3,7 +3,7 @@ if (typeof require !== 'undefined') {
 } else if (React) {
   //good to go
 } else {
-  console.warn('React not found - use a CDN');
+  console.warn('React not found - use a CDN or run in terminal: npm ls --depth=0');
 }
 
 
@@ -31,6 +31,16 @@ var WorldMap = React.createClass ({
         }
       }
     );
+  },
+  componentDidUpdate: function() {
+    this.emitEvent();
+  },
+  emitEvent: function() {
+    const clickedEvent = new CustomEvent(
+      'WorldMapClicked',
+      {detail: {clickedState: this.state.clicked}}
+    );
+    window.dispatchEvent(clickedEvent);
   },
   changeCss: function() {
     const clicked = this.state.clicked
