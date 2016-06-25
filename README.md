@@ -41,7 +41,8 @@ as you can see, there is an event fired when the map is clicked on, which contai
 - AF - Africa
 - EU - Europe
 - AS - Asia
-- OC - Oceania
+- OC - Oceania  
+
 ### make sure to set your css to target the map: 
 ```css
 .map-selected {
@@ -56,8 +57,6 @@ as you can see, there is an event fired when the map is clicked on, which contai
   cursor: pointer;
 }
 ```
-
-(If you are on npm, you can find source code (pre-babel-compilation) on [github](https://github.com/heatherbooker/clickable-svg-map))
 
 Please feel free to fork and PR if you think you have developed something useful!
 
