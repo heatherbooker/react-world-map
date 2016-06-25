@@ -1,6 +1,6 @@
 'use strict';
 
-if (require) {
+if (typeof require !== 'undefined') {
   var React = require('react');
 } else if (React) {
   //good to go
@@ -168,7 +168,7 @@ var WorldMap = React.createClass({
   }
 });
 
-if (module) {
+if (typeof module !== 'undefined') {
   module.exports = WorldMap;
 } else {
   window.WorldMap = WorldMap;
