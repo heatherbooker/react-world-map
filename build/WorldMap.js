@@ -170,6 +170,9 @@ var WorldMap = React.createClass({
 
 if (typeof module !== 'undefined') {
   module.exports = WorldMap;
+  console.log('module was not undefined');
 } else {
   window.WorldMap = WorldMap;
+  console.log('module was undefined');
+  console.log('window.WorldMap should be set to: ', window.WorldMap);
 }
