@@ -50,9 +50,6 @@
 	var ReactDOM = __webpack_require__(38);
 	//import react-world-map
 	var WorldMap = __webpack_require__(168);
-	var OriginalMap = __webpack_require__(169);
-	console.log("WorldMap", WorldMap);
-	console.log('OriginalMap', OriginalMap);
 
 	var YourMainComponent = React.createClass({
 	  displayName: 'YourMainComponent',

@@ -6,6 +6,7 @@
 - built of SVG paths
 
 #### [Click here for demo!](https://heatherbooker.github.io/clickable-svg-map/)
+##### [Click here to view on npm](https://www.npmjs.com/package/react-world-map)  [Or here to view on react-components](http://react-components.com/component/react-world-map)
 ### to use:
 ```
 npm install react-world-map --save
