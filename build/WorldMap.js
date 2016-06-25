@@ -1,8 +1,14 @@
 'use strict';
 
-var React = require('react');
+if (require) {
+  var React = require('react');
+} else if (React) {
+  //good to go
+} else {
+  console.warn('React not found - use a CDN');
+}
 
-module.exports = React.createClass({
+var WorldMap = React.createClass({
   displayName: 'exports',
 
   getInitialState: function getInitialState() {
@@ -161,3 +167,9 @@ module.exports = React.createClass({
     );
   }
 });
+
+if (module) {
+  module.exports = WorldMap;
+} else {
+  window.WorldMap = WorldMap;
+}
