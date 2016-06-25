@@ -5,11 +5,11 @@ if (typeof require !== 'undefined') {
 } else if (React) {
   //good to go
 } else {
-  console.warn('React not found - use a CDN');
-}
+    console.warn('React not found - use a CDN');
+  }
 
 var WorldMap = React.createClass({
-  displayName: 'exports',
+  displayName: 'WorldMap',
 
   getInitialState: function getInitialState() {
     return { clicked: 'none' };
@@ -170,9 +170,6 @@ var WorldMap = React.createClass({
 
 if (typeof module !== 'undefined') {
   module.exports = WorldMap;
-  console.log('module was not undefined');
 } else {
   window.WorldMap = WorldMap;
-  console.log('module was undefined');
-  console.log('window.WorldMap should be set to: ', window.WorldMap);
 }

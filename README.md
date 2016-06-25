@@ -5,12 +5,13 @@
 - uses React
 - built of SVG paths
 
-#### [Click here for demo!](https://heatherbooker.github.io/clickable-svg-map/)
-##### [Click here to view on npm](https://www.npmjs.com/package/react-world-map)  [Or here to view on react-components](http://react-components.com/component/react-world-map)
-### to use:
+#### [Click here for demo on jsfiddle](https://jsfiddle.net/heatherbooker/xuLosv0h/)
+##### view on: [npm](https://www.npmjs.com/package/react-world-map) || [github](https://github.com/heatherbooker/clickable-svg-map) || [react-components](http://react-components.com/component/react-world-map)
+### usage:
 ```
 npm install react-world-map --save
 ```
+or, [view demo on jsfiddle](https://jsfiddle.net/heatherbooker/xuLosv0h/) for example of use with cdn instead of npm
 #### then in your `index.jsx` or `main.jsx`:
 ```
 var React = require('react');

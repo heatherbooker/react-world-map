@@ -1,7 +1,13 @@
-var React = require('react');
+if (typeof require !== 'undefined') {
+  var React = require('react');
+} else if (React) {
+  //good to go
+} else {
+  console.warn('React not found - use a CDN');
+}
 
 
-module.exports = React.createClass ({
+var WorldMap = React.createClass ({
   getInitialState: function() {
     return {clicked: 'none'};
   },
@@ -140,3 +146,9 @@ module.exports = React.createClass ({
     );
   }
 });
+
+if (typeof module !== 'undefined') {
+  module.exports = WorldMap;
+} else {
+  window.WorldMap = WorldMap;
+}
