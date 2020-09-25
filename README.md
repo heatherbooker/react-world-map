@@ -13,35 +13,50 @@ npm install react-world-map --save
 ```
 or, [view demo on jsfiddle](https://jsfiddle.net/heatherbooker/xuLosv0h/) for example of use with cdn instead of npm
 #### then in your `index.jsx` or `main.jsx`:
+
+Controlled component:
+```jsx
+<WorldMap selected={ 'as' } onSelect={ (continent) => {} } />
 ```
-var React = require('react');
-var ReactDOM = require('react-dom');
+
+Uncontrolled component:
+```jsx
+<WorldMap />
+```
+
+Full usage:
+```jsx
+const React, { useState } = require('react');
+const ReactDOM = require('react-dom');
 //import react-world-map
-var WorldMap = require('react-world-map');
+const WorldMap = require('react-world-map');
 
-var YourMainComponent = React.createClass({
-  render: function() {
-    return (
-      //your other components
-      <WorldMap />
-    )
-  }
-})
+function YourMainComponent() {
+  const [selected, onSelect] = useState(null);
 
-window.addEventListener('WorldMapClicked', function(e) {console.log('map was clicked, current selection is: ', e.detail.clickedState)});
+  return (
+    //your other components
+    <WorldMap selected={ selected } onSelect={ onSelect } />
+  );
+}
 
 ReactDOM.render(
   <YourMainComponent />,
   document.getElementById('react-app')
 )
 ```
-as you can see, there is an event fired when the map is clicked on, which contains the detail of which area is currently selected, codes of which are as follows:
-- NA - North America
-- SA - South America
-- AF - Africa
-- EU - Europe
-- AS - Asia
-- OC - Oceania  
+
+#### Props
+- onSelect: (continentCode) => void;
+- selected: continentCode;
+
+whereas the list of possible continents is as follows:
+- na - North America
+- sa - South America
+- af - Africa
+- eu - Europe
+- as - Asia
+- oc - Oceania
 
 ### make sure to set your css to target the map: 
 ```css
