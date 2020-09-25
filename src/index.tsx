@@ -164,5 +164,6 @@ class WorldMap extends React.Component {
 if (typeof module !== 'undefined') {
   module.exports = WorldMap;
 } else {
+  //@ts-ignore
   window.WorldMap = WorldMap;
 }
