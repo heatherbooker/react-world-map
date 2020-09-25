@@ -159,7 +159,7 @@ class WorldMap extends React.Component {
       </div>
     );
   }
-});
+}
 
 if (typeof module !== 'undefined') {
   module.exports = WorldMap;
