@@ -1,20 +1,23 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 //import react-world-map
-var WorldMap = require('../build/WorldMap.js');
+var WorldMap = require('../dist/index.js');
 
 
-var YourMainComponent = React.createClass({
-  render: function() {
+class YourMainComponent extends React.Component {
+  render() {
     return (
-      <WorldMap />
+      <>
+        <h1> The Clickity-Clickable World Map </h1>
+        <WorldMap />
+      </>
     )
   }
-})
+}
 
 window.addEventListener('WorldMapClicked', function(e) {console.log('map was clicked, current selection is: ', e.detail.clickedState)});
 
 ReactDOM.render(
-  <WorldMap />,
+  <YourMainComponent />,
   document.getElementById('react-app')
 )

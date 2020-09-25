@@ -1,18 +1,17 @@
+const path = require('path');
+
 module.exports = {
   entry: "./demo/index.jsx",
   output: {
-    path: 'demo',
-    filename: "bundle.js"
+    path: path.resolve(__dirname, './demo'),
+    filename: 'bundle.js'
   },
   module: {
     rules: [{
       test: /\.jsx$/,
       exclude: /node_modules/,
       use: {
-        loader: 'babel',
-        options: {
-          presets: ['env', 'react']
-        }
+        loader: 'babel-loader'
       },
     }]
   }
