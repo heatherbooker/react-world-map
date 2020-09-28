@@ -1,4 +1,4 @@
-## Clickable world map
+## React clickable world map
 
 - click on an area to select it (_approx. continents_)
 - selecting it will change the className-->change the color
@@ -6,17 +6,18 @@
 - built of SVG paths
 
 #### [Click here for demo on jsfiddle](https://jsfiddle.net/heatherbooker/xuLosv0h/)
-##### view on: [npm](https://www.npmjs.com/package/react-world-map) || [github](https://github.com/heatherbooker/clickable-svg-map) || [react-components](http://react-components.com/component/react-world-map)
+
 ### usage:
 ```
 npm install react-world-map --save
 ```
 or, [view demo on jsfiddle](https://jsfiddle.net/heatherbooker/xuLosv0h/) for example of use with cdn instead of npm
-#### then in your `index.jsx` or `main.jsx`:
+
+#### then in your `index.jsx` or `main.jsx` (see bottom for css):
 
 Controlled component:
 ```jsx
-<WorldMap selected={ 'as' } onSelect={ (continent) => {} } />
+<WorldMap selected={ 'sa' } onSelect={ (continent) => {} } />
 ```
 
 Uncontrolled component:
@@ -28,15 +29,16 @@ Full usage:
 ```jsx
 const React, { useState } = require('react');
 const ReactDOM = require('react-dom');
-//import react-world-map
 const WorldMap = require('react-world-map');
 
 function YourMainComponent() {
   const [selected, onSelect] = useState(null);
 
   return (
-    //your other components
-    <WorldMap selected={ selected } onSelect={ onSelect } />
+    <>
+      <h1> Hello World Map!</h1>
+      <WorldMap selected={ selected } onSelect={ onSelect } />
+    </>
   );
 }
 
@@ -47,16 +49,16 @@ ReactDOM.render(
 ```
 
 #### Props
-- onSelect: (continentCode) => void;
-- selected: continentCode;
+- `onSelect: (continentCode) => void`
+- `selected: continentCode`
 
 whereas the list of possible continents is as follows:
-- na - North America
-- sa - South America
-- af - Africa
-- eu - Europe
-- as - Asia
-- oc - Oceania
+- `na` - North America
+- `sa` - South America
+- `af` - Africa
+- `eu` - Europe
+- `as` - Asia
+- `oc` - Oceania
 
 ### make sure to set your css to target the map: 
 ```css
