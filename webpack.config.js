@@ -1,9 +1,9 @@
 const path = require('path');
 
 module.exports = {
-  entry: "./demo/index.jsx",
+  entry: "./docs/index.jsx",
   output: {
-    path: path.resolve(__dirname, './demo'),
+    path: path.resolve(__dirname, './docs'),
     filename: 'bundle.js'
   },
   module: {
