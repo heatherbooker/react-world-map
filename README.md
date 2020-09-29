@@ -84,3 +84,5 @@ whereas the list of possible continents is as follows:
 Please feel free to fork and PR if you think you have developed something useful!
 
 license: **WTFPL**
+
+bonus: [blog post on the making of this map](https://heatherbooker.github.io/blog/2016/06/21/interactive-react-map.html) :)
