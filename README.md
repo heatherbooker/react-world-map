@@ -7,6 +7,8 @@
 
 #### [Demo](https://heatherbooker.github.io/react-world-map/)
 
+![gif of map being clicked and changing colour](./docs/map-being-clicked.gif)
+
 ### usage:
 ```
 npm install react-world-map --save
