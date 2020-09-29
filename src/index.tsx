@@ -17,17 +17,17 @@ interface Props {
   onSelect?: (c: Continent) => void;
 }
 
-class ControlledWorldMap extends React.Component {
+class WorldMap extends React.Component {
   render = () => {
     if (this.props.selected && this.props.onSelect) {
-      return <WorldMap selected={ this.props.selected } onSelect={ this.props.onSelect } />;
+      return <ControlledWorldMap selected={ this.props.selected } onSelect={ this.props.onSelect } />;
     } else if (!this.props.selected && !this.props.onSelect) {
       return <UncontrolledWorldMap />;
     }
   }
 }
 
-class UncontrolledWorldMap extends React.Component {
+class UncontrolledWorldMap extends React.Component<{}> {
   state: State = {selected: null};
 
   onMapClick = (area) => {
@@ -43,11 +43,11 @@ class UncontrolledWorldMap extends React.Component {
   }
 
   render = () => {
-    <WorldMap selected={ this.state.selected } onSelect={ this.onMapClick } />
+    <ControlledWorldMap selected={ this.state.selected } onSelect={ this.onMapClick } />
   }
 }
 
-class WorldMap extends React.Component<Props> {
+class ControlledWorldMap extends React.Component<Props> {
   onMapClick = (area: Continent) => {
     if (this.props.selected === area) {
       this.props.onSelect(null);
