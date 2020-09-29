@@ -9,8 +9,15 @@ function YourMainComponent() {
 
   return (
     <>
-      <h1> The Clickity-Clickable World Map </h1>
+      <h1> react world map </h1>
       <WorldMap selected={selected} onSelect={setSelected} />
+      <pre style={{ marginLeft: '20px', border: '1px solid grey', padding: '10px', width: '40%'}}>{
+`<WorldMap
+  selected="sa"
+  onSelect={ (continentCode) => setSelected(continentCode) }
+/>`}
+      </pre>
+      <a href="https://github.com/heatherbooker/react-world-map">Back to Github</a>
     </>
   );
 }
