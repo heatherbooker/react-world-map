@@ -7,11 +7,10 @@ if (typeof require !== 'undefined') {
 }
 
 
-var WorldMap = React.createClass ({
-  getInitialState: function() {
-    return {clicked: 'none'};
-  },
-  componentDidMount: function() {
+class WorldMap extends React.Component {
+  state = {clicked: 'none'};
+
+  componentDidMount = () => {
     this.mapState = {
       na: "map-unselected",
       sa: "map-unselected",
@@ -20,8 +19,9 @@ var WorldMap = React.createClass ({
       as: "map-unselected",
       oc: "map-unselected"
     };
-  },
-  onMapClick: function(area) {
+  }
+
+  onMapClick = (area) => {
     this.setState(
       function() {
         if (this.state.clicked === area) {
@@ -31,18 +31,21 @@ var WorldMap = React.createClass ({
         }
       }
     );
-  },
-  componentDidUpdate: function() {
+  }
+
+  componentDidUpdate = () => {
     this.emitEvent();
-  },
-  emitEvent: function() {
+  }
+
+  emitEvent() {
     const clickedEvent = new CustomEvent(
       'WorldMapClicked',
       {detail: {clickedState: this.state.clicked}}
     );
     window.dispatchEvent(clickedEvent);
-  },
-  changeCss: function() {
+  }
+
+  changeCss = () => {
     const clicked = this.state.clicked
     let newMapState = {
       na: "map-unselected",
@@ -58,8 +61,9 @@ var WorldMap = React.createClass ({
       newMapState[clicked] = "map-selected";
     }
     this.mapState = newMapState;
-  },
-  render: function() {
+  }
+
+  render = () => {
     this.changeCss();
     return (
       <div className='row'>
@@ -155,7 +159,7 @@ var WorldMap = React.createClass ({
       </div>
     );
   }
-});
+}
 
 if (typeof module !== 'undefined') {
   module.exports = WorldMap;

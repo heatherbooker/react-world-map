@@ -3,4 +3,4 @@ demo
 src
 webpack.config.js
 .gitignore
-.babelrc
+babel.config.json
