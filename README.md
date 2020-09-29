@@ -13,7 +13,7 @@ npm install react-world-map --save
 ```
 or, include
 ```
-<script src="https://rawgit.com/heatherbooker/react-world-map/master/dist/index.js"></script>
+<script src=""https://cdn.jsdelivr.net/gh/heatherbooker/react-world-map@master/dist/index.js"></script>
 ```
 in your html to use the script directly.
 
