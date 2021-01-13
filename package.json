@@ -4,7 +4,7 @@
   "description": "clickable world map built with React with css changes",
   "main": "dist/index.js",
   "scripts": {
-    "build": "babel src -d dist",
+    "build": "babel --extensions \".ts,.tsx\" src -d dist",
     "build-demo": "webpack",
     "tsc": "tsc src/index.tsx --jsx react --noEmit"
   },
