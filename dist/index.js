@@ -45,15 +45,13 @@ var WorldMap = /*#__PURE__*/function (_React$Component) {
     _this = _super.call.apply(_super, [this].concat(args));
 
     _defineProperty(_assertThisInitialized(_this), "render", function () {
-      if (_this.props.selected !== undefined && _this.props.onSelect) {
+      if (_this.props.selected || _this.props.onSelect) {
         return /*#__PURE__*/React.createElement(ControlledWorldMap, {
           selected: _this.props.selected,
           onSelect: _this.props.onSelect
         });
-      } else if (!_this.props.selected && !_this.props.onSelect) {
-        return /*#__PURE__*/React.createElement(UncontrolledWorldMap, null);
       } else {
-        console.warn('WorldMap requires both or neither of the props: "selected" and "onSelect"; Instead it received only 1 out of 2.');
+        return /*#__PURE__*/React.createElement(UncontrolledWorldMap, null);
       }
     });
 
