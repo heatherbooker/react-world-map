@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.2.0 - 2020-01-19
+
+- Use controlled component if selected OR onSelect props are given
+- 2.1.0 was stupid, that should have been a branch and not smack dab on main branch -_-
+
 ## 2.1.0 - 2020-01-19
 
 - Check specifically for 'undefined' value in `props.selected`

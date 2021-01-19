@@ -1,5 +1,5 @@
 node_modules
-demo
+docs
 src
 webpack.config.js
 .gitignore
