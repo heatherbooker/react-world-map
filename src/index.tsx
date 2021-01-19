@@ -17,36 +17,6 @@ interface Props {
   onSelect?: (c: Continent) => void;
 }
 
-class WorldMap extends React.Component<Props> {
-  render = () => {
-    if (this.props.selected || this.props.onSelect) {
-      return <ControlledWorldMap selected={ this.props.selected } onSelect={ this.props.onSelect } />;
-    } else {
-      return <UncontrolledWorldMap />;
-    }
-  }
-}
-
-class UncontrolledWorldMap extends React.Component<{}> {
-  state: State = { selected: null };
-
-  onMapClick = (area) => {
-    this.setState(
-      function() {
-        if (this.state.selected === area) {
-          return { selected: null };
-        } else {
-          return { selected: area };
-        }
-      }
-    );
-  }
-
-  render = () => (
-    <ControlledWorldMap selected={ this.state.selected } onSelect={ this.onMapClick } />
-  )
-}
-
 class ControlledWorldMap extends React.Component<Props> {
   onMapClick = (area: Continent) => {
     if (this.props.selected === area) {
@@ -158,6 +128,36 @@ class ControlledWorldMap extends React.Component<Props> {
         </svg>
       </div>
     );
+  }
+}
+
+class UncontrolledWorldMap extends React.Component<{}> {
+  state: State = { selected: null };
+
+  onMapClick = (area) => {
+    this.setState(
+      function() {
+        if (this.state.selected === area) {
+          return { selected: null };
+        } else {
+          return { selected: area };
+        }
+      }
+    );
+  }
+
+  render = () => (
+    <ControlledWorldMap selected={ this.state.selected } onSelect={ this.onMapClick } />
+  )
+}
+
+class WorldMap extends React.Component<Props> {
+  render = () => {
+    if (this.props.selected || this.props.onSelect) {
+      return <ControlledWorldMap selected={ this.props.selected } onSelect={ this.props.onSelect } />;
+    } else {
+      return <UncontrolledWorldMap />;
+    }
   }
 }
 
