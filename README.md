@@ -6,6 +6,7 @@
 - built of SVG paths
 
 #### [Demo](https://heatherbooker.github.io/react-world-map/)
+#### [Codepen (interactive demo)](https://codepen.io/hboo/pen/yLaZWdb)
 
 ![gif of map being clicked and changing colour](./docs/map-being-clicked.gif)
 
