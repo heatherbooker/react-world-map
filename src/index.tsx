@@ -9,11 +9,11 @@ if (typeof require !== 'undefined') {
 
 type Continent = 'af' | 'as' | 'eu' | 'na' | 'oc' | 'sa';
 interface State {
-  selected: Continent | null;
+  selected: Array<Continent> | Continent | null;
 }
 
 interface Props {
-  selected?: Continent | false | null;
+  selected?: Array<Continent> | Continent | false | null;
   onSelect?: (c: Continent) => void;
 }
 
@@ -30,15 +30,16 @@ class WorldMap extends React.Component<Props> {
 }
 
 class UncontrolledWorldMap extends React.Component<{}> {
-  state: State = {selected: null};
+  state: State = {selected: []};
 
   onMapClick = (area) => {
     this.setState(
       function() {
-        if (this.state.selected === area) {
-          return {selected: null};
+        const idx = this.state.selected.indexOf(area);
+        if (idx === -1) {
+          return this.state.selected.push(area);
         } else {
-          return {selected: area};
+          return this.state.selected.splice(idx, 1);
         }
       }
     );
