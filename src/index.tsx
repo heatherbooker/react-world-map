@@ -19,7 +19,7 @@ interface Props {
 
 class WorldMap extends React.Component<Props> {
   render = () => {
-    if (this.props.selected && this.props.onSelect) {
+    if (this.props.selected !== undefined && this.props.onSelect) {
       return <ControlledWorldMap selected={ this.props.selected } onSelect={ this.props.onSelect } />;
     } else if (!this.props.selected && !this.props.onSelect) {
       return <UncontrolledWorldMap />;
