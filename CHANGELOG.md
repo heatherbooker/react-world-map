@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.1.0 - 2020-01-19
+
+- Check specifically for 'undefined' value in `props.selected`
+- Add console warning for passing only 1 out of 2 props for controlled component
+
 ## 2.0.0 - 2020-09-28
 
 BREAKING VERSION CHANGE from 1.0.13!
