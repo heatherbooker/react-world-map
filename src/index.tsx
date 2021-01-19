@@ -1,5 +1,5 @@
 if (typeof require !== 'undefined') {
-  var React = require('react');
+  var React = require('react'); // eslint-disable-line no-var
 } else if (React) {
   // good to go
 } else {
