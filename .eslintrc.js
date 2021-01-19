@@ -22,12 +22,12 @@ module.exports = {
   rules: {
     semi: ['error', 'always'],
     'space-before-function-paren': ['error', 'never'],
-    "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": ["error"]
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': ['error']
   },
   settings: {
     react: {
       version: 'detect'
     }
   }
-}
+};

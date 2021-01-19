@@ -6,8 +6,8 @@
   "scripts": {
     "build": "babel --extensions \".ts,.tsx\" src -d dist",
     "build-demo": "webpack",
-    "lint": "eslint src/** docs/index.jsx",
-    "lint-fix": "eslint src/** docs/index.jsx --fix",
+    "lint": "eslint src/** docs/index.jsx .eslintrc.js webpack.config.js",
+    "lint-fix": "npm run lint -- --fix",
     "tsc": "tsc src/index.tsx --jsx react --noEmit"
   },
   "repository": {
