@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: "./docs/index.jsx",
+  entry: './docs/index.jsx',
   output: {
     path: path.resolve(__dirname, './docs'),
     filename: 'bundle.js'
@@ -12,7 +12,7 @@ module.exports = {
       exclude: /node_modules/,
       use: {
         loader: 'babel-loader'
-      },
+      }
     }]
   }
 };
