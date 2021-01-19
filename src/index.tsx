@@ -1,7 +1,7 @@
 if (typeof require !== 'undefined') {
   var React = require('react');
 } else if (React) {
-  //good to go
+  // good to go
 } else {
   // i no longer have any idea why i thought npm ls was a good solution to this..
   console.warn('React not found - use a CDN or run in terminal: npm ls --depth=0');
@@ -28,23 +28,23 @@ class WorldMap extends React.Component<Props> {
 }
 
 class UncontrolledWorldMap extends React.Component<{}> {
-  state: State = {selected: null};
+  state: State = { selected: null };
 
   onMapClick = (area) => {
     this.setState(
       function() {
         if (this.state.selected === area) {
-          return {selected: null};
+          return { selected: null };
         } else {
-          return {selected: area};
+          return { selected: area };
         }
       }
     );
   }
 
-  render = () => {
+  render = () => (
     <ControlledWorldMap selected={ this.state.selected } onSelect={ this.onMapClick } />
-  }
+  )
 }
 
 class ControlledWorldMap extends React.Component<Props> {
@@ -57,7 +57,7 @@ class ControlledWorldMap extends React.Component<Props> {
   }
 
   getClassname = (area: Continent) => {
-    if (area === this.props.selected) { 
+    if (area === this.props.selected) {
       return 'map-selected';
     } else {
       return 'map-unselected';
@@ -164,6 +164,6 @@ class ControlledWorldMap extends React.Component<Props> {
 if (typeof module !== 'undefined') {
   module.exports = WorldMap;
 } else {
-  //@ts-ignore
+  // @ts-ignore
   window.WorldMap = WorldMap;
 }
