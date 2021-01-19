@@ -54,6 +54,10 @@ var ControlledWorldMap = /*#__PURE__*/function (_React$Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "getClassname", function (area) {
+      if (_this.props.selected !== null && _typeof(_this.props.selected) === 'object') {
+        return _this.props.selected.indexOf(area) === -1 ? 'map-unselected' : 'map-selected';
+      }
+
       if (area === _this.props.selected) {
         return 'map-selected';
       } else {
@@ -336,18 +340,24 @@ var UncontrolledWorldMap = /*#__PURE__*/function (_React$Component2) {
     _this2 = _super2.call.apply(_super2, [this].concat(args));
 
     _defineProperty(_assertThisInitialized(_this2), "state", {
-      selected: null
+      selected: []
     });
 
     _defineProperty(_assertThisInitialized(_this2), "onMapClick", function (area) {
       _this2.setState(function () {
-        if (this.state.selected === area) {
-          return {
-            selected: null
-          };
+        if (this.props.multiple) {
+          var index = this.state.selected.indexOf(area);
+
+          if (index === -1) {
+            return this.state.selected.push(area);
+          } else {
+            return this.state.selected.splice(index, 1);
+          }
         } else {
-          return {
-            selected: area
+          return this.state.selected[0] === area ? {
+            selected: []
+          } : {
+            selected: [area]
           };
         }
       });
@@ -389,7 +399,9 @@ var WorldMap = /*#__PURE__*/function (_React$Component3) {
           onSelect: _this3.props.onSelect
         });
       } else {
-        return /*#__PURE__*/React.createElement(UncontrolledWorldMap, null);
+        return /*#__PURE__*/React.createElement(UncontrolledWorldMap, {
+          multiple: _this3.props.multiple
+        });
       }
     });
 

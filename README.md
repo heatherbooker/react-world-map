@@ -32,6 +32,13 @@ Uncontrolled component:
 <WorldMap />
 ```
 
+Uncontrolled component also supports multiple selection using the `multiple = { true }` prop. Example:
+```jsx
+<WorldMap
+  multiple={ true }
+/>
+```
+
 Full usage:
 ```jsx
 const React, { useState } = require('react');
