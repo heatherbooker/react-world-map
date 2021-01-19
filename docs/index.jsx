@@ -5,7 +5,7 @@ var WorldMap = require('../dist/index.js');
 
 
 function YourMainComponent() {
-  const [selected, setSelected] = React.useState(null);
+  const [selected, setSelected] = React.useState('sa');
 
   return (
     <>
