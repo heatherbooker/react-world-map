@@ -3,7 +3,7 @@ if (typeof require !== 'undefined') {
 } else if (React) {
   //good to go
 } else {
-  // i no longer have any idea why i think npm ls was a good solution to this..
+  // i no longer have any idea why i thought npm ls was a good solution to this..
   console.warn('React not found - use a CDN or run in terminal: npm ls --depth=0');
 }
 
@@ -17,12 +17,14 @@ interface Props {
   onSelect?: (c: Continent) => void;
 }
 
-class WorldMap extends React.Component {
+class WorldMap extends React.Component<Props> {
   render = () => {
     if (this.props.selected && this.props.onSelect) {
       return <ControlledWorldMap selected={ this.props.selected } onSelect={ this.props.onSelect } />;
     } else if (!this.props.selected && !this.props.onSelect) {
       return <UncontrolledWorldMap />;
+    } else {
+      console.warn('WorldMap requires both or neither of the props: "selected" and "onSelect"; Instead it received only 1 out of 2.');
     }
   }
 }

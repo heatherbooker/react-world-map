@@ -4,10 +4,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
@@ -28,6 +24,7 @@ if (typeof require !== 'undefined') {
   var React = require('react');
 } else if (React) {//good to go
 } else {
+  // i no longer have any idea why i thought npm ls was a good solution to this..
   console.warn('React not found - use a CDN or run in terminal: npm ls --depth=0');
 }
 
@@ -47,61 +44,106 @@ var WorldMap = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call.apply(_super, [this].concat(args));
 
-    _defineProperty(_assertThisInitialized(_this), "state", {
-      clicked: 'none'
+    _defineProperty(_assertThisInitialized(_this), "render", function () {
+      if (_this.props.selected && _this.props.onSelect) {
+        return /*#__PURE__*/React.createElement(ControlledWorldMap, {
+          selected: _this.props.selected,
+          onSelect: _this.props.onSelect
+        });
+      } else if (!_this.props.selected && !_this.props.onSelect) {
+        return /*#__PURE__*/React.createElement(UncontrolledWorldMap, null);
+      } else {
+        console.warn('WorldMap requires both or neither of the props: "selected" and "onSelect"; Instead it received only 1 out of 2.');
+      }
     });
 
-    _defineProperty(_assertThisInitialized(_this), "componentDidMount", function () {
-      _this.mapState = {
-        na: "map-unselected",
-        sa: "map-unselected",
-        af: "map-unselected",
-        eu: "map-unselected",
-        as: "map-unselected",
-        oc: "map-unselected"
-      };
+    return _this;
+  }
+
+  return WorldMap;
+}(React.Component);
+
+var UncontrolledWorldMap = /*#__PURE__*/function (_React$Component2) {
+  _inherits(UncontrolledWorldMap, _React$Component2);
+
+  var _super2 = _createSuper(UncontrolledWorldMap);
+
+  function UncontrolledWorldMap() {
+    var _this2;
+
+    _classCallCheck(this, UncontrolledWorldMap);
+
+    for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      args[_key2] = arguments[_key2];
+    }
+
+    _this2 = _super2.call.apply(_super2, [this].concat(args));
+
+    _defineProperty(_assertThisInitialized(_this2), "state", {
+      selected: null
     });
 
-    _defineProperty(_assertThisInitialized(_this), "onMapClick", function (area) {
-      _this.setState(function () {
-        if (this.state.clicked === area) {
+    _defineProperty(_assertThisInitialized(_this2), "onMapClick", function (area) {
+      _this2.setState(function () {
+        if (this.state.selected === area) {
           return {
-            clicked: 'none'
+            selected: null
           };
         } else {
           return {
-            clicked: area
+            selected: area
           };
         }
       });
     });
 
-    _defineProperty(_assertThisInitialized(_this), "componentDidUpdate", function () {
-      _this.emitEvent();
+    _defineProperty(_assertThisInitialized(_this2), "render", function () {
+      /*#__PURE__*/
+      React.createElement(ControlledWorldMap, {
+        selected: _this2.state.selected,
+        onSelect: _this2.onMapClick
+      });
     });
 
-    _defineProperty(_assertThisInitialized(_this), "changeCss", function () {
-      var clicked = _this.state.clicked;
-      var newMapState = {
-        na: "map-unselected",
-        sa: "map-unselected",
-        af: "map-unselected",
-        eu: "map-unselected",
-        as: "map-unselected",
-        oc: "map-unselected"
-      };
+    return _this2;
+  }
 
-      if (clicked === 'none') {//no need to make any areas selected, skip past 'else'
+  return UncontrolledWorldMap;
+}(React.Component);
+
+var ControlledWorldMap = /*#__PURE__*/function (_React$Component3) {
+  _inherits(ControlledWorldMap, _React$Component3);
+
+  var _super3 = _createSuper(ControlledWorldMap);
+
+  function ControlledWorldMap() {
+    var _this3;
+
+    _classCallCheck(this, ControlledWorldMap);
+
+    for (var _len3 = arguments.length, args = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+      args[_key3] = arguments[_key3];
+    }
+
+    _this3 = _super3.call.apply(_super3, [this].concat(args));
+
+    _defineProperty(_assertThisInitialized(_this3), "onMapClick", function (area) {
+      if (_this3.props.selected === area) {
+        _this3.props.onSelect(null);
       } else {
-        newMapState[clicked] = "map-selected";
+        _this3.props.onSelect(area);
       }
-
-      _this.mapState = newMapState;
     });
 
-    _defineProperty(_assertThisInitialized(_this), "render", function () {
-      _this.changeCss();
+    _defineProperty(_assertThisInitialized(_this3), "getClassname", function (area) {
+      if (area === _this3.props.selected) {
+        return 'map-selected';
+      } else {
+        return 'map-unselected';
+      }
+    });
 
+    _defineProperty(_assertThisInitialized(_this3), "render", function () {
       return /*#__PURE__*/React.createElement("div", {
         className: "row"
       }, /*#__PURE__*/React.createElement("svg", {
@@ -127,8 +169,8 @@ var WorldMap = /*#__PURE__*/function (_React$Component) {
         stopColor: "#84297f"
       }))), /*#__PURE__*/React.createElement("g", {
         id: "AF",
-        className: _this.mapState.af,
-        onClick: _this.onMapClick.bind(_assertThisInitialized(_this), 'af')
+        className: _this3.getClassname('af'),
+        onClick: _this3.onMapClick.bind(_assertThisInitialized(_this3), 'af')
       }, /*#__PURE__*/React.createElement("path", {
         id: "path4307",
         d: "M345.902 112.802c-.17.07-.465-.25-.712-.27-4.522-.397-8.758-1.617-12.802-3.765-3.034-1.612-4.46-.522-4.662 2.886-.083 1.41-1.59 2.89-2.388 2.6-2.33-.84-5.66-.743-6.844-2.497-1.98-2.928-4.745-3.15-7.454-3.954-2.822-.838-3.82-2.355-3.362-5.1.232-1.41-.062-3.027-.87-4.077-1.022-1.326-2.538-.395-3.773.174-2.42 1.114-5.057.88-7.43.463-3.982-.7-7.45.41-10.57 2.353-3.217 2.005-6.126 2.44-9.33.388-.89-.568-1.57-.542-2.092.522-.986 2.016-2.6 3.41-4.584 4.4-2.34 1.162-3.488 3.376-3.594 5.652-.13 2.84-1.84 4.387-3.778 5.472-2.85 1.593-4.95 3.8-6.516 6.475-1.57 2.686-3.01 5.426-4.79 7.998-.936 1.353-1.45 3.018-.583 4.844 1.364 2.873 1.865 5.848.457 8.94-1.026 2.25-3.17 4.5-.41 7.02.17.157-.84.53-.112.962-2.044 1.885.48 2.86 1.136 3.413 2.413 2.036 4.23 4.46 5.466 7.25.53 1.202 1.027 2.303 1.875 3.315 1.513 1.808 3.355 3.207 5.19 4.632 2.15 1.66 4.487 2.358 7.178 1.57 1.965-.573 4.045-1.78 5.958-1.218 2.726.802 5.014.213 7.458-.707 2.313-.868 4.68-1.602 7.055-2.278 2.103-.6 5.36.928 5.86 2.954.424 1.7.94 1.963 2.638 1.51 3.457-.927 6.375 1.536 6.468 5.097.045 1.752-.163 3.427-.74 5.1-.643 1.857-1.513 3.932.178 5.61 3.446 3.41 5.434 7.51 7.28 11.96.896 2.16-.156 4.12.832 5.864 1.913 3.39.45 6.11-1.116 9.128-2.437 4.693-3.19 9.58.055 14.384 2.876 4.262 4.066 9.067 4.505 14.142.152 1.773-.015 3.83 1.088 5.245 2.082 2.677 3.54 5.682 5.264 8.55.564.938.853 1.618.55 2.82-.747 2.93 1.544 5 4.478 4.35 2.745-.605 5.488-1.696 8.314-.373.563.263.974.07 1.46-.147 3.6-1.622 6.623-3.885 9.203-6.964 1.934-2.312 3.53-4.934 5.783-6.935.9-.8 1.245-1.22.97-2.485-.54-2.477.076-4.417 2.812-5.604 4.124-1.79 4.638-3.683 2.556-7.79-.642-1.263-1.128-2.546-.002-3.562 2.824-2.547 4.426-6.274 8.454-7.728 3.474-1.255 4.783-4.753 4.377-8.378-.44-3.88-.828-7.66-2.61-11.294-.963-1.958-1.395-4.338-.81-6.787 1.685-7.023 7.57-10.894 11.763-16.02 1.952-2.39 5.308-3.368 6.88-6.143 2.305-4.066 4.287-8.315 6.575-12.39 1.193-2.124 1.39-4.085.162-6.344-3.516 2.275-7.657 2.108-11.426 3.32-1.82.583-4.3-1.108-4.76-3.08-.65-2.768-2.467-4.555-4.49-6.396-1.663-1.508-4.207-2.326-4.675-4.952-.25-1.41-.9-2.558-1.822-3.618-1.9-2.177-3.655-4.407-3.25-7.61.06-.477-.496-1.06-.826-1.55-3.618-5.377-5.79-11.577-9.615-16.83-.366-.5-.496-.97.034-1.334"
@@ -137,8 +179,8 @@ var WorldMap = /*#__PURE__*/function (_React$Component) {
         d: "M390.758 215.407c-1.126 4.07-4.206 6.355-7.395 8.04-3.08 1.623-4.565 3.03-3.67 6.426.538 2.044.475 3.746-.954 5.293-2.31 2.5-1.826 5.44-1.14 8.27.46 1.886 2.024 2.625 4.012 2.35 2.547-.35 4.203-1.945 4.528-4.27.878-6.33 3.857-11.94 5.758-17.912.96-3.024.438-5.497-1.14-8.197z"
       })), /*#__PURE__*/React.createElement("g", {
         id: "SA",
-        className: _this.mapState.sa,
-        onClick: _this.onMapClick.bind(_assertThisInitialized(_this), 'sa')
+        className: _this3.getClassname('sa'),
+        onClick: _this3.onMapClick.bind(_assertThisInitialized(_this3), 'sa')
       }, /*#__PURE__*/React.createElement("path", {
         id: "path5918",
         d: "M115.618 166.174c-.415 1.425.243 2.418.6 3.565 1.137 3.644.977 7.03-1.524 10.18-2.03 2.56-4.198 5.048-5.47 8.15-.393.966-.787 2.178.092 2.588 3.028 1.41.873 2.67.053 3.96-1.37 2.154-1.048 4.542 1 6.016 1.174.848 1.857 1.98 2.586 3.18 1.58 2.6 1.826 5.79 3.77 8.22 1.605 2.013 3.28 3.943 4.124 6.505.725 2.197 2.425 3.567 4.602 4.603 5.66 2.694 10.344 6.27 10.638 13.36.15 3.602-.243 7.18-.033 10.82.198 3.464.227 6.988.716 10.46.625 4.445 2.04 8.945.958 13.358-.95 3.9 1.106 7.085 1.628 10.576.352 2.36 3.356 3.75 4.09 6.826.866 3.615 1.584 4.13-1.22 6.74 1.314.826 2.84 1.408 3.365 3.066 1.238 3.9 3.232 7.28 6.362 10.034 1.42 1.25 5.01 1.734 6.428.405.427-.402.932-.71.423-1.495-1.376-2.128-.534-4.14.584-6.04 1.206-2.053 1.067-3.652-1.116-4.982-1.025-.625-2.42-2.097-1.822-2.843 1.68-2.098 1.874-4.722 3.084-7.057-1.285-.557-2.43-1.407-2.888-2.943-.145-.49-.527-.903-.074-1.424.555-.638 1.052-.168 1.63-.03.885.21 1.667 1.71 2.665.49.745-.912 1.322-1.992.48-3.305-.818-1.272.053-1.71 1.183-1.798.778-.06 1.59.107 2.342-.05 2.254-.46 4.63-1.172 5.095-3.717.39-2.127-1.12-3.816-2.623-5.265-.516-.497-1.858-.546-1.458-1.48.383-.906 1.49-.477 2.3-.208.736.247 1.513.444 2.173.833 2.03 1.192 3.83.246 4.808-1.202 3.157-4.665 5.83-9.626 7.665-14.997.438-1.285.54-2.54-.095-3.736-.59-1.11-.343-1.89.518-2.752 2.245-2.25 5.44-2.937 7.85-4.903.213-.174.723-.165 1.008-.042 2.866 1.232 4.393-.71 5.25-2.72 2.402-5.634 4.383-11.423 3.233-17.752-.203-1.113-.26-2.46.613-3.22 2.544-2.218 3.312-5.68 5.685-7.918 1.616-1.523 1.937-3.455 2.37-5.33.55-2.396-.897-4.25-3.3-4.924-2.624-.736-5.027-1.852-6.545-4.304-.174-.282-.47-.673-.727-.69-3.424-.2-6.822-2.28-10.27-.255-.964.568-1.528.082-1.33-.65.87-3.205-1.976-3.083-3.512-4.054-1.675-1.06-2.744.294-3.78 1.298-1.18 1.15-2.397 1.63-3.943.62.774-.364 1.553-.687 2.087-1.387.44-.58 1.382-.977.698-1.928-.6-.828-1.408-1.364-2.433-.913-.698.304-1.33.798-1.918 1.295-.663.56-1.23 1.228-1.864 1.825-.418.397-.845 1.084-1.514.552-.8-.628-.15-1.316.236-1.784.71-.86 1.557-1.586 2.48-2.265 1.01-.745 2.167-2.147 1.472-3.222-.894-1.387-1.017-2.896-1.56-4.314-1.174-3.07-5.613-6.326-8.444-5.77-3.636.712-6.402-.76-8.173-3.595-1.276-2.04-2.967-3.473-4.895-4.405-2.033-.98-3.938-2.6-6.434-2.435-3.293.22-6.36-.177-9.023-2.47-.862-.74-2.192-2.053-3.404-.793-.89.923-3.702 1.082-1.93 3.597.534.755-.227 1.43-.725 2.004-.283.327-.672.67-1.07.187-.432-.532-.912-1.15-.717-1.864.48-1.767.28-3.723 1.71-5.283-2.368-.584-2.823 2.05-4.29 2.204-3.052.317-4.325 2.25-5.64 4.628-.806 1.455-2.192 3.004-4.224.975"
@@ -150,8 +192,8 @@ var WorldMap = /*#__PURE__*/function (_React$Component) {
         d: "M178.366 306.535c-1.333-.773-2.788-.467-4.18-.606-.96-.1-1.134.7-1.27 1.21-.196.735.636.665 1.093.9 1.92.987 3.192.083 4.355-1.506z"
       })), /*#__PURE__*/React.createElement("g", {
         id: "EU",
-        className: _this.mapState.eu,
-        onClick: _this.onMapClick.bind(_assertThisInitialized(_this), 'eu')
+        className: _this3.getClassname('eu'),
+        onClick: _this3.onMapClick.bind(_assertThisInitialized(_this3), 'eu')
       }, /*#__PURE__*/React.createElement("path", {
         id: "path5896",
         d: "M314.54 12.017c-.95.52-2.082-.24-2.718.828 1.143.663 2.173 1.27 3.214 1.86.726.413 1.568.678 1.98-.274.474-1.097 1.535-1.59 2.175-2.51 1.29-1.85 2.49-1.655 3.312.56.157.425.237.99.616.713 1.317-.97 2.53.273 4.03.078-1.355-2.037-4.132-1.85-5.448-3.937 2.526.016 4.722 1.5 7.046.302.48-.248 1.064-.418 1.012-.996-.066-.715-.765-.55-1.246-.562-1.736-.038-3.628.388-5.175-.163-2.225-.794-2.97.183-3.69 2.165-.646-1.42-1.195-2.776-2.865-1.106-.43.43-1.75.282-2.516.002-1.715-.624-3.44-.287-5.16-.37-.56-.027-1.32-.193-1.46.67-.134.818.615 1.025 1.13 1.215 1.353.498 2.62 1.547 4.237.492.774-.507 1.17.304 1.528 1.035z"
@@ -184,8 +226,8 @@ var WorldMap = /*#__PURE__*/function (_React$Component) {
         d: "M333.694 102.073c2.108 1.235 3.815 2.096 6.053.893-1.875-1.272-3.754-.968-6.053-.893z"
       })), /*#__PURE__*/React.createElement("g", {
         id: "AS",
-        className: _this.mapState.as,
-        onClick: _this.onMapClick.bind(_assertThisInitialized(_this), 'as')
+        className: _this3.getClassname('as'),
+        onClick: _this3.onMapClick.bind(_assertThisInitialized(_this3), 'as')
       }, /*#__PURE__*/React.createElement("path", {
         id: "path5928",
         d: "M563.326 80.01l-.22-.625c-.09.068-.266.186-.26.196.11.183.242.35.37.524-.166 1.17 1.466 1.9.63 3.34-1.11 1.913-.78 2.61 1.426 4.105.115-.878-.667-2.7 1.068-2.09 2.394.834 4.014.275 5.508-1.74-2.823-1.23-5.67-2.47-8.522-3.71z"
@@ -260,8 +302,8 @@ var WorldMap = /*#__PURE__*/function (_React$Component) {
         d: "M355.887 101.243c-.717.492-.965.725-1.26.85-.454.193-.935.326-1.414.45-.946.25-.877.956-.203 1.133 1.005.262 1.867-.447 2.524-1.232.138-.164.14-.443.353-1.2z"
       })), /*#__PURE__*/React.createElement("g", {
         id: "NA",
-        className: _this.mapState.na,
-        onClick: _this.onMapClick.bind(_assertThisInitialized(_this), 'na')
+        className: _this3.getClassname('na'),
+        onClick: _this3.onMapClick.bind(_assertThisInitialized(_this3), 'na')
       }, /*#__PURE__*/React.createElement("path", {
         id: "path5926",
         d: "M181.233 66.485c-2.833 1.613-4.37 4.582-7.332 6.61 3.753.416 6.997 1.23 10.343.204 1.626-.5 1.465-1.2.786-2.4-.475-.847-1.305-.918-1.96-1.074-1.91-.454-2.29-1.542-1.744-3.23.208-.073.418-.148.626-.22-.067-.092-.186-.267-.194-.26-.182.11-.35.24-.523.368z"
@@ -315,8 +357,8 @@ var WorldMap = /*#__PURE__*/function (_React$Component) {
         d: "M143.03 142.054c-.368-.47-.964-.39-1.527-.383-.548.01-1.19.215-1.162.75.038.704.744.816 1.38.783.65-.033 1.143-.27 1.312-1.148z"
       })), /*#__PURE__*/React.createElement("g", {
         id: "OC",
-        className: _this.mapState.oc,
-        onClick: _this.onMapClick.bind(_assertThisInitialized(_this), 'oc')
+        className: _this3.getClassname('oc'),
+        onClick: _this3.onMapClick.bind(_assertThisInitialized(_this3), 'oc')
       }, /*#__PURE__*/React.createElement("path", {
         id: "path5922",
         d: "M610.708 211.614c.172.126.34.26.523.37.01.007.13-.17.2-.258l-.623-.226c-.46-1.705-2.208-2.034-3.295-3.07-1.68-1.608-3.786-3.635-3.54-5.62.317-2.562-.706-3.446-2.328-4.708-3.884-3.022-8.545-4.387-12.83-6.534-3.37-1.687-5.854-1.676-8.62.578-.462.377-1.037.58-1.298 1.19-.503 1.158-1.074.737-1.73.096-.643-.632-1.07-1.378-1.33-2.202-1.307-4.2-2.23-4.577-6.12-2.304 1.053.553 2.037 1.08 3.027 1.59.912.464 1.798.676.42 1.897-1.092.97-.305 2.38.94 2.37 3.283-.023 5.667 1.99 8.368 3.24 3.533 1.637 3.98 3.92 1.485 6.636.308.17.658.536.902.475 2.053-.51 3.39.376 4.9 1.75 1.926 1.75 4.35 1.064 5.673-1.215.897-1.55 1.967-2.29 3.804-1.422 1.38.648 2.74 1.452 3.376 2.74 1.695 3.452 4.824 4.104 8.102 4.626z"
@@ -353,26 +395,15 @@ var WorldMap = /*#__PURE__*/function (_React$Component) {
       }))));
     });
 
-    return _this;
+    return _this3;
   }
 
-  _createClass(WorldMap, [{
-    key: "emitEvent",
-    value: function emitEvent() {
-      var clickedEvent = new CustomEvent('WorldMapClicked', {
-        detail: {
-          clickedState: this.state.clicked
-        }
-      });
-      window.dispatchEvent(clickedEvent);
-    }
-  }]);
-
-  return WorldMap;
+  return ControlledWorldMap;
 }(React.Component);
 
 if (typeof module !== 'undefined') {
   module.exports = WorldMap;
 } else {
+  //@ts-ignore
   window.WorldMap = WorldMap;
 }
