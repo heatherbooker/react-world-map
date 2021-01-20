@@ -1,11 +1,13 @@
 {
   "name": "react-world-map",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "clickable world map built with React with css changes",
   "main": "dist/index.js",
   "scripts": {
     "build": "babel --extensions \".ts,.tsx\" src -d dist",
     "build-demo": "webpack",
+    "lint": "eslint src/** docs/index.jsx .eslintrc.js webpack.config.js",
+    "lint-fix": "npm run lint -- --fix",
     "tsc": "tsc src/index.tsx --jsx react --noEmit"
   },
   "repository": {
@@ -36,7 +38,15 @@
     "@babel/preset-react": "^7.10.4",
     "@babel/preset-typescript": "^7.10.4",
     "@types/node": "^14.11.2",
+    "@typescript-eslint/eslint-plugin": "^4.14.0",
+    "@typescript-eslint/parser": "^4.14.0",
     "babel-loader": "^8.1.0",
+    "eslint": "^7.18.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.22.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "typescript": "^4.0.3",
