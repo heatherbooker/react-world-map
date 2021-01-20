@@ -12,12 +12,16 @@ interface State {
   selected: Array<Continent> | Continent | null;
 }
 
-interface Props {
-  selected?: Array<Continent> | Continent | false | null;
-  onSelect?: (c: Continent) => void;
+interface ControlledProps {
+  selected: Array<Continent> | Continent | false | null | undefined;
+  onSelect: (c: Continent) => void;
 }
 
-class ControlledWorldMap extends React.Component<Props> {
+interface UncontrolledProps {
+  multiple?: boolean;
+}
+
+class ControlledWorldMap extends React.Component<ControlledProps> {
   onMapClick = (area: Continent) => {
     if (this.props.selected === area) {
       this.props.onSelect(null);
@@ -27,6 +31,10 @@ class ControlledWorldMap extends React.Component<Props> {
   }
 
   getClassname = (area: Continent) => {
+    if (this.props.selected !== null && typeof this.props.selected === 'object') {
+      return this.props.selected.indexOf(area) === -1 ? 'map-unselected' : 'map-selected';
+    }
+
     if (area === this.props.selected) {
       return 'map-selected';
     } else {
@@ -131,17 +139,21 @@ class ControlledWorldMap extends React.Component<Props> {
   }
 }
 
-class UncontrolledWorldMap extends React.Component<{}> {
-  state: State = {selected: []};
+class UncontrolledWorldMap extends React.Component<UncontrolledProps> {
+  state: State = { selected: [] };
 
   onMapClick = (area) => {
     this.setState(
       function() {
-        const index = this.state.selected.indexOf(area);
-        if (index === -1) {
-          return this.state.selected.push(area);
+        if (this.props.multiple) {
+          const index = this.state.selected.indexOf(area);
+          if (index === -1) {
+            return this.state.selected.push(area);
+          } else {
+            return this.state.selected.splice(index, 1);
+          }
         } else {
-          return this.state.selected.splice(index, 1);
+          return this.state.selected[0] === area ? this.setState({ selected: [] }) : this.setState({ selected: [area] });
         }
       }
     );
@@ -152,12 +164,12 @@ class UncontrolledWorldMap extends React.Component<{}> {
   )
 }
 
-class WorldMap extends React.Component<Props> {
+class WorldMap extends React.Component<ControlledProps | UncontrolledProps> {
   render = () => {
     if (this.props.selected || this.props.onSelect) {
       return <ControlledWorldMap selected={ this.props.selected } onSelect={ this.props.onSelect } />;
     } else {
-      return <UncontrolledWorldMap />;
+      return <UncontrolledWorldMap multiple={ this.props.multiple } />;
     }
   }
 }
