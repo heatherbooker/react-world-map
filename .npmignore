@@ -4,3 +4,6 @@ src
 webpack.config.js
 .gitignore
 babel.config.json
+.eslintrc.js
+.github
+CONTRIBUTING.md
