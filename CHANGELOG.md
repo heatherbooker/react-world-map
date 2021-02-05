@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.3.0 - 2021-02-04
+
+- Add support for multiple selection in uncontrolled map.
+
 ## 2.2.0 - 2020-01-19
 
 - Use controlled component if selected OR onSelect props are given
