@@ -354,11 +354,11 @@ var UncontrolledWorldMap = /*#__PURE__*/function (_React$Component2) {
             return this.state.selected.splice(index, 1);
           }
         } else {
-          return this.state.selected[0] === area ? this.setState({
+          return this.state.selected[0] === area ? {
             selected: []
-          }) : this.setState({
+          } : {
             selected: [area]
-          });
+          };
         }
       });
     });

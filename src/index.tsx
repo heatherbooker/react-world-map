@@ -153,7 +153,7 @@ class UncontrolledWorldMap extends React.Component<UncontrolledProps> {
             return this.state.selected.splice(index, 1);
           }
         } else {
-          return this.state.selected[0] === area ? this.setState({ selected: [] }) : this.setState({ selected: [area] });
+          return this.state.selected[0] === area ? { selected: [] } : { selected: [area] };
         }
       }
     );
