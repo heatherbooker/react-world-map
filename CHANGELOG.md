@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.4.0 - 2022-01-07
+
+- Accept react 17 as peer dependency (as well as 16), thanks @VWRoli !
+
 ## 2.3.0 - 2021-02-04
 
 - Add support for multiple selection in uncontrolled map.
